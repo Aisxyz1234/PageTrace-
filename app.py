@@ -1,9 +1,3 @@
-"""
-PDF Page Finder — Upload a PDF book and a snippet image, find which page it's from.
-Requirements: pip install PyMuPDF opencv-python-headless numpy Pillow tkinter
-Run: python app.py
-"""
-
 import tkinter as tk
 from tkinter import filedialog, messagebox, ttk
 import threading
@@ -14,14 +8,10 @@ from PIL import Image, ImageTk
 import fitz  # PyMuPDF
 
 
-# ─────────────────────────────────────────────
-#  Core Search Engine
-# ─────────────────────────────────────────────
-
 class PDFPageFinder:
     """Renders PDF pages and matches a query image snippet against them."""
 
-    RENDER_DPI = 150  # higher = more accurate but slower
+    RENDER_DPI = 150 
 
     def __init__(self, pdf_path: str):
         self.pdf_path = pdf_path
@@ -41,7 +31,7 @@ class PDFPageFinder:
         Search all pages for the snippet image.
         Returns: (best_page_1indexed, score, match_location, page_image_bgr)
         """
-        # Load snippet as grayscale
+
         snippet_bgr = cv2.imread(snippet_path)
         if snippet_bgr is None:
             raise ValueError("Could not load snippet image. Check the file path.")
